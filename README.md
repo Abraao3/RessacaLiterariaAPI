@@ -113,6 +113,12 @@ Comunidade de leitura e biblioteca pessoal integrada com possibilidades de:
 | 30 set | Sistema de gamificação completo (XP, streak, ranking) |
 | 1 dez | Lançamento v1.0 em produção |
 
-#Logos
+# Logos
+![](./logo_A_claro.png)
+![](./logo_A_escuro.png)
+
+![](./logo_C_claro.png)
+![](./logo_C_escuro.png)
+
 
 
