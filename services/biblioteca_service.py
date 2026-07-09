@@ -3,7 +3,7 @@ from models import Biblioteca
 from datetime import date
 from typing import Optional
 
-def adicionar_livro_biblioteca(db: Session, usuario_id: int, livro_id: int, status_leitura: str, data_inicio: Optional[date], data_prevista: Optional[date]) -> Biblioteca:
+def adicionar_livro_biblioteca(db: Session, usuario_id: int, livro_id: str, status_leitura: str, data_inicio: Optional[date], data_prevista: Optional[date]) -> Biblioteca:
     existente = db.query(Biblioteca).filter_by(usuario_id=usuario_id, livro_id=livro_id).first()
     if existente:
         raise ValueError("Livro já está na biblioteca")
@@ -19,7 +19,7 @@ def adicionar_livro_biblioteca(db: Session, usuario_id: int, livro_id: int, stat
     db.refresh(nova)
     return nova
 
-def listar_biblioteca_usuario(db: Session, usuario_id: int):
+def listar_biblioteca_usuario(db: Session, usuario_id: int) -> list[Biblioteca]:
     return db.query(Biblioteca).filter(Biblioteca.usuario_id == usuario_id).all()
 
 def obter_item_biblioteca(db: Session, item_id: int, usuario_id: int) -> Optional[Biblioteca]:

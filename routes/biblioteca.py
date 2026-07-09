@@ -14,7 +14,7 @@ from services.biblioteca_service import (
 router = APIRouter(prefix="/biblioteca", tags=["biblioteca"])
 
 class BibliotecaAdd(BaseModel):
-    livro_id: int
+    livro_id: str
     status_leitura: Optional[str] = "nao_iniciado"
     data_inicio: Optional[date] = None
     data_prevista_termino: Optional[date] = None
@@ -26,7 +26,7 @@ class BibliotecaUpdate(BaseModel):
 
 @router.post("/adicionar", status_code=201)
 def adicionar(dados: BibliotecaAdd, current_user: Usuario = Depends(get_current_user), db: Session = Depends(get_db)):
-    livro = db.query(Livro).filter(Livro.id == dados.livro_id).first()
+    livro = dados.livro_id[7:]
     if not livro:
         raise HTTPException(404, "Livro não existe")
     try:
@@ -40,10 +40,9 @@ def listar(current_user: Usuario = Depends(get_current_user), db: Session = Depe
     items = listar_biblioteca_usuario(db, current_user.id)
     resultado = []
     for item in items:
-        livro = db.query(Livro).get(item.livro_id)
         resultado.append({
             "id": item.id,
-            "livro": {"id": livro.id, "titulo": livro.titulo, "autor": livro.autor},
+            "livro": item.livro_id,
             "status_leitura": item.status_leitura,
             "data_inicio": item.data_inicio,
             "data_prevista_termino": item.data_prevista_termino
@@ -55,10 +54,10 @@ def detalhe(item_id: int, current_user: Usuario = Depends(get_current_user), db:
     item = obter_item_biblioteca(db, item_id, current_user.id)
     if not item:
         raise HTTPException(404, "Item não encontrado")
-    livro = db.query(Livro).get(item.livro_id)
+    livro = item.livro_id
     return {
         "id": item.id,
-        "livro": {"id": livro.id, "titulo": livro.titulo, "autor": livro.autor},
+        "livro": livro,
         "status_leitura": item.status_leitura,
         "data_inicio": item.data_inicio,
         "data_prevista_termino": item.data_prevista_termino
