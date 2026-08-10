@@ -9,22 +9,22 @@ CREATE TABLE usuarios (
     tipo ENUM('administrador','cliente','participante do projeto') NOT NULL
 );
 
-CREATE TABLE livros (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(150) NOT NULL,
-    autor VARCHAR(100) NOT NULL,
-    genero VARCHAR(50)
-);
+-- CREATE TABLE livros (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     titulo VARCHAR(150) NOT NULL,
+--     autor VARCHAR(100) NOT NULL,
+--     genero VARCHAR(50)
+-- ); Não será mais necessário devido a terceirização do banco para o OpenLibrary
 
 CREATE TABLE biblioteca (
     id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT,
-    livro_id INT,
+    livro_id VARCHAR(14),
     status_leitura VARCHAR(30) DEFAULT 'nao_iniciado',
     data_inicio DATE,
     data_prevista_termino DATE,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
-    FOREIGN KEY (livro_id) REFERENCES livros(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (livro_id) REFERENCES livros(id) ON DELETE CASCADE,
     UNIQUE KEY (usuario_id, livro_id)
 );
 
