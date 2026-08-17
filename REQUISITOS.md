@@ -4,11 +4,11 @@
 
 Os requisitos funcionais descrevem as funcionalidades que o sistema deverá oferecer aos seus usuários.
 
-### 1.1 Cadastro de Usuários
+### RF01 Cadastro de Usuários
 
 O sistema deverá permitir que o usuário realize seu cadastro utilizando **e-mail e senha**.
 
-### 1.2 Login e Logout
+### RF02 Login e Logout
 
 O sistema deverá permitir que o usuário:
 
@@ -16,15 +16,15 @@ O sistema deverá permitir que o usuário:
 - Encerre sua sessão quando desejar;
 - Tenha suas credenciais armazenadas de forma segura no banco de dados.
 
-### 1.3 Cadastro, Edição e Exclusão de Dados (CRUD)
+### RF03 Cadastro, Edição e Exclusão de Dados (CRUD)
 
 O sistema deverá permitir o **cadastro, consulta, edição e exclusão de dados**, de acordo com as permissões do usuário.
 
-### 1.4 Geração de Relatórios
+### RF04 Geração de Relatórios
 
 O sistema deverá permitir a **geração de relatórios** e possibilitar que o usuário consulte os relatórios disponíveis.
 
-### 1.5 Busca por Informações
+### RF05 Busca por Informações
 
 O sistema deverá disponibilizar uma ferramenta de busca que permita ao usuário encontrar informações na plataforma, como:
 
@@ -34,11 +34,11 @@ O sistema deverá disponibilizar uma ferramenta de busca que permita ao usuário
 - 🏆 Rankings;
 - 🔎 Outros conteúdos cadastrados no sistema.
 
-### 1.6 Recuperação de Senha
+### RF06 Recuperação de Senha
 
 O sistema deverá permitir que o usuário **recupere sua senha por meio do e-mail cadastrado**, fornecendo as instruções necessárias para realizar a recuperação de acesso.
 
-### 1.7 Sistema de Avaliação
+### RF07 Sistema de Avaliação
 
 O sistema deverá disponibilizar um espaço para que os usuários possam:
 
@@ -46,15 +46,15 @@ O sistema deverá disponibilizar um espaço para que os usuários possam:
 - 💬 Publicar comentários;
 - 📖 Compartilhar suas opiniões sobre os conteúdos disponíveis.
 
-### 1.8 Favoritos
+### RF08 Favoritos
 
 O sistema deverá permitir que o usuário **salve itens como favoritos**, possibilitando o acesso rápido a esses conteúdos posteriormente.
 
-### 1.9 Histórico de Atividades
+### RF09 Histórico de Atividades
 
 O sistema deverá permitir que o usuário consulte seu **histórico de atividades**, visualizando suas ações mais recentes realizadas na plataforma.
 
-### 1.10 Ordenação e Filtros
+### RF10 Ordenação e Filtros
 
 O sistema deverá permitir que o usuário **ordene e filtre informações** de acordo com diferentes critérios, como:
 
@@ -64,20 +64,36 @@ O sistema deverá permitir que o usuário **ordene e filtre informações** de a
 - 🔤 Ordem alfabética;
 - 🔎 Outros critérios disponíveis.
 
+### RF11 Entrar em grupos
+
+O sistema deve permitir que o usuário entre em um grupo público de forma livre, e em privados com uso de senha
+
+### RF12 Criar grupos de leitura
+
+O sistema deve garantir que o usuário seja capaz de criar grupos de leitura
+
+### RF13 Alterar informações do grupo
+
+O sistema deve permitir a um usuário com permissão suficiente que altere informações como nome do grupo ou estado da leitura atual
+
+### RF14 Planejar reuniões
+
+O sistema deve permitir que donos ou administradores de grupos de leitura agendem uma reunião, anunciando para os integrantes na página do grupo da sua ocorrência
+
 ---
 
 ## 2. Requisitos Não Funcionais
 
 Os requisitos não funcionais definem características relacionadas à qualidade, desempenho, segurança e compatibilidade do sistema.
 
-### 2.1 Desempenho
+### RNF01 Desempenho
 
 O sistema deverá atender aos seguintes requisitos de desempenho:
 
 - ⚡ O tempo de resposta das operações deverá ser de, no máximo, **100 milissegundos**, quando aplicável;
 - 👥 O sistema deverá suportar até **2.000 usuários acessando simultaneamente**.
 
-### 2.2 Compatibilidade
+### RNF02 Compatibilidade
 
 O sistema deverá ser compatível com:
 
@@ -90,7 +106,7 @@ O sistema deverá ser compatível com:
   - Microsoft Edge;
   - Safari.
 
-### 2.3 Segurança
+### RNF03 Segurança
 
 O sistema deverá garantir a proteção das informações dos usuários.
 
@@ -103,7 +119,7 @@ Entre as medidas de segurança estão:
 
 > **Observação:** senhas não devem ser armazenadas diretamente no banco de dados em texto puro. Deve-se utilizar um algoritmo seguro de hash de senhas.
 
-### 2.4 Responsividade
+### RNF04 Responsividade
 
 A interface do sistema deverá ser **responsiva**, adaptando-se automaticamente a diferentes tamanhos e resoluções de tela, garantindo uma boa experiência de uso em:
 
