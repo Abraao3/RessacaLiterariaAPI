@@ -133,7 +133,7 @@ Comunidade de leitura e biblioteca pessoal integrada com possibilidades de:
 
 ## Protótipos de tela
 
-[Protótipos](https://canva.link/beceq9qelw5oa3j)
+[Protótipos](https://www.figma.com/site/w5CTcYlxJR1k9ZFl3Wlr7A/Prot%C3%B3tipos-reais?node-id=0-1&t=x0CKbTeV8wJDRNs0-1)
 
 ## Requisitos Funcionais
 
