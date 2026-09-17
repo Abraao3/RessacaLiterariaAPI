@@ -6,6 +6,11 @@ import styles from '@/app/styles/login.module.css';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
+import { Limelight } from 'next/font/google';
+
+const fontLime = Limelight({
+  weight: "400"
+})
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -43,7 +48,7 @@ export default function Login() {
             loading="eager"
           />
 
-          <h1 className={`${styles.titulo} select-none`}>
+          <h1 className={`${styles.titulo} ${fontLime.className} select-none`}>
             Ressaca Literária
           </h1>
         </div>
