@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import BarraLateral from "@/app/componentes/BarraLateral";
 import PerfilInfo from "@/app/componentes/PerfilInfo";
@@ -22,11 +22,13 @@ export default function Dashboard() {
 
   const [aba, setAba] = useState("perfil");
 
+  const Router = useRouter();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      redirect("/");
+      Router.push("/");
     }
 
     api
@@ -34,14 +36,14 @@ export default function Dashboard() {
       .then((res: any) => setUsuario(res.data))
       .catch(() => {
         localStorage.removeItem("token");
-        redirect("/");
+        Router.push("/");
       })
       .finally(() => setCarregando(false));
-  }, []);
+  }, [Router]);
 
   const sair = () => {
     localStorage.removeItem("token");
-    redirect("/");
+    Router.push("/");
   };
 
   const handleClick = (aba: string) => {
