@@ -6,7 +6,6 @@ import axios from "axios"
 import Image from "next/image"
 import { useState } from "react"
 import { Livro } from "@/app/models/livro"
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 // function imageLoader({ src }: {src: string | number}) {
 //     if (src != "/imagens/naoencontrado.png") {
@@ -48,7 +47,7 @@ export default function Page() {
         <div>
             <header className={`${styles.barra_de_pesquisa} flex justify-center h-[5rem] items-center `}>
                 <form onSubmit={handleSubmit} className="flex flex-row justify-center items-center w-[70vw] gap-6 bg-white h-1/2 p-2 rounded-full font-sans">
-                    <input type="text" name="query" className="w-full focus:outline-0" placeholder="Insira o nome do livro" />
+                    <input type="text" name="query" className="w-full focus:outline-0 text-black" placeholder="Insira o nome do livro" />
                     <button type="submit" className="text-2xl cursor-pointer">
                         <Image 
                             src={"/imagens/Lupa.png"} 
@@ -62,7 +61,7 @@ export default function Page() {
             <main>
                 <div className="flex flex-row flex-wrap gap-20 font-sans min-h-[90vh] max-h-91 min-w-[100vw] justify-center items-center pt-5 overflow-scroll">
                     {livros.length != 0 && livros.map((livro: Livro, index)=> (
-                        <div key={livro.key} className={`h-[25rem] w-[22rem] flex flex-col flex-grow-0 p-4 bg-gray-100 rounded text-lg ${playfair.className} overflow-scroll`}>
+                        <div key={livro.key} className={`h-[25rem] w-[22rem] flex flex-col text-foreground flex-grow-0 p-4 bg-background2 rounded text-lg ${playfair.className} overflow-scroll`}>
                             {livro.title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.title}</span>}
                             {livro.title.length > 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.title.slice(0,60)}...</span>}
                             <Image className=" justify-self-center max-h-[10rem] bg-gray-200  rounded-xl min-h-[10rem]"
