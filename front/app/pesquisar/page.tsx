@@ -98,7 +98,9 @@ export default function Page() {
                         )} else { return (
                             <div key={livro.editions.docs.length > 0 ? livro.editions.docs[0].key : livro.key} className={`h-[25rem] w-[22rem] flex flex-col text-foreground flex-grow-0 p-4 bg-background2 rounded text-lg ${playfair.className} overflow-scroll`}>
                                 {livro.editions.docs.length > 0 && livro.editions.docs[0].title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title != undefined? livro.editions.docs[0].title : livro.title}</span>}
+                                {livro.editions.docs.length === 0 && livro.title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.title}</span>}
                                 {livro.editions.docs.length > 0 && livro.editions.docs[0].title.length > 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title != undefined? livro.editions.docs[0].title.slice(0,60) : livro.title.slice(0,60)}...</span>}
+                                {livro.editions.docs.length === 0 && livro.title.length > 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.title.slice(0,60)}...</span>}
                                 {livro.editions.docs.length > 0 &&
                                 <Image className=" justify-self-center max-h-[10rem] bg-gray-200  rounded-xl min-h-[10rem]"
                                     src={getImage(livro.editions.docs[0])}
@@ -123,7 +125,7 @@ export default function Page() {
                                 </span>
                                 }
                                 {livro.author_name && livro.author_name.length == 1 && <span className="font-bold mt-3 border-t-1 border-black">Autor: {livro.author_name}</span>}
-                                <Link href={`/livro?key=${livro.editions.docs.length > 0 ? livro.editions.docs[0].key : livro.key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
+                                <Link href={`/livro?key=${livro.key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
                             </div>
                         )}
                     })}

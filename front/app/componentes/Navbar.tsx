@@ -27,7 +27,7 @@ export default function Navbar() {
 
         <Link href="/dashboard">Biblioteca</Link>
 
-        <Link href="/pesquisa">Pesquisar</Link>
+        <Link href="/pesquisar">Pesquisar</Link>
 
         <Link href="/dashboard">Favoritos</Link>
 
