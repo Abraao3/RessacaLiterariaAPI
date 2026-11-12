@@ -8,7 +8,7 @@ import PerfilInfo from "@/app/componentes/PerfilInfo";
 import AlterarSenha from "@/app/componentes/AlterarSenha";
 import Notificacoes from "@/app/componentes/Notificacoes";
 import Privacidade from "@/app/componentes/Privacidade";
-import Navbar from "@/app/componentes/NavBar";
+import Navbar from "@/app/componentes/Navbar";
 
 import api from "@/app/servicos/api";
 import BibliotecaPessoal from "../componentes/BibliotecaPessoal";
@@ -56,7 +56,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <Navbar />
 
       <div style={{ display: "flex" }}>
         <BarraLateral usuario={usuario} aoSair={sair} />
