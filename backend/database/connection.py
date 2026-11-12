@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DB_USER = os.getenv("DB_USER", "root")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "sua_senha")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "admin")
 DB_HOST = os.getenv("DB_HOST", "localhost")
 DB_NAME = os.getenv("DB_NAME", "biblioteca_social")   # Nome FIXO: biblioteca_social
 
