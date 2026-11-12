@@ -1,26 +1,38 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useNav } from './NavContext';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/NavBar.module.css";
 
 export default function Navbar() {
-    const { links } = useNav();
-    if (!links || links.length === 0) {
-        return null;
-    }
-    return (
-        <nav className="w-full max-w-full overflow-x-hidden bg-background2 px-4 py-3 shadow-sm">
-            <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-4 max-w-full">
-                {links.map((link) => (
-                    <Link
-                        key={link.href}
-                        href={link.href}
-                        className="text-sm sm:text-base text-foreground transition hover:opacity-80 whitespace-nowrap"
-                    >
-                        {link.label}
-                    </Link>
-                ))}
-            </div>
-        </nav>
-    );
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.logoArea}>
+        <Link href="/dashboard">
+          <Image
+            src="/imagens/logo_sem_fundo.png"
+            alt="Ressaca Literária"
+            width={55}
+            height={55}
+          />
+        </Link>
+
+        <Link href="/dashboard" className={styles.nome}>
+          Ressaca Literária
+        </Link>
+      </div>
+
+      <div className={styles.links}>
+        <Link href="/dashboard">Início</Link>
+
+        <Link href="/dashboard">Biblioteca</Link>
+
+        <Link href="/pesquisa">Pesquisar</Link>
+
+        <Link href="/dashboard">Favoritos</Link>
+
+        <Link href="/dashboard">Perfil</Link>
+      </div>
+    </nav>
+  );
 }
