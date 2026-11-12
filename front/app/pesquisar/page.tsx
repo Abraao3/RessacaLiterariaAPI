@@ -38,7 +38,7 @@ export default function Page() {
             setLivros([])
             e.preventDefault()
             const dados = new FormData(e.currentTarget)
-            const res = await axios.get(`https://openlibrary.org/search.json?q=${dados.get('query')}&lang=pt&fields=title,key,editions,author_name`)
+            const res = await axios.get(`https://openlibrary.org/search.json?q=${query}&lang=pt&fields=title,key,editions,author_name,cover_i`)
             setLivros(res.data.docs)
         } catch(e) {
             console.log(e)
@@ -75,7 +75,7 @@ export default function Page() {
             </header>
             <main>
                 <div className="flex flex-row flex-wrap gap-20 font-sans min-h-[90vh] max-h-91 min-w-[100vw] justify-center items-center pt-5 overflow-scroll">
-                    {livros.length != 0 && livros.map((livro: Livro, index)=> {
+                    {livros != undefined && livros.length != 0 && livros.map((livro: Livro, index)=> {
                         if (!livro.editions){ return (
                             <div key={livro.key} className={`h-[25rem] w-[22rem] flex flex-col text-foreground flex-grow-0 p-4 bg-background2 rounded text-lg ${playfair.className} overflow-scroll`}>
                                 {livro.title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.title}</span>}
@@ -96,16 +96,25 @@ export default function Page() {
                                 <Link href={`/livro?key=${livro.key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
                             </div>
                         )} else { return (
-                            <div key={livro.editions.docs[0].key} className={`h-[25rem] w-[22rem] flex flex-col text-foreground flex-grow-0 p-4 bg-background2 rounded text-lg ${playfair.className} overflow-scroll`}>
-                                {livro.editions.docs[0].title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title}</span>}
-                                {livro.editions.docs[0].title.length > 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title.slice(0,60)}...</span>}
+                            <div key={livro.editions.docs.length > 0 ? livro.editions.docs[0].key : livro.key} className={`h-[25rem] w-[22rem] flex flex-col text-foreground flex-grow-0 p-4 bg-background2 rounded text-lg ${playfair.className} overflow-scroll`}>
+                                {livro.editions.docs.length > 0 && livro.editions.docs[0].title.length <= 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title != undefined? livro.editions.docs[0].title : livro.title}</span>}
+                                {livro.editions.docs.length > 0 && livro.editions.docs[0].title.length > 70 && <span className="font-bold h-[4rem] mb-3 border-b-1 border-black">{livro.editions.docs[0].title != undefined? livro.editions.docs[0].title.slice(0,60) : livro.title.slice(0,60)}...</span>}
+                                {livro.editions.docs.length > 0 &&
                                 <Image className=" justify-self-center max-h-[10rem] bg-gray-200  rounded-xl min-h-[10rem]"
                                     src={getImage(livro.editions.docs[0])}
                                     alt="Não encontrado"
                                     width={120}
                                     height={250}
                                 />
-                                <span>{livro.editions.docs[0].cover_i}</span>
+                                }
+                                {livro.editions.docs.length === 0 &&
+                                <Image className=" justify-self-center max-h-[10rem] bg-gray-200  rounded-xl min-h-[10rem]"
+                                    src={getImage(livro)}
+                                    alt="Não encontrado"
+                                    width={120}
+                                    height={250}
+                                />
+                                }
                                 {!livro.author_name && <span className="font-bold mt-3 border-t-1 border-black">Autor: Não encontrado</span>}
                                 {livro.author_name && livro.author_name.length > 1 &&   
                                 <span className="font-bold mt-3 border-t-1 border-black">Autores: {livro.author_name.map((autor, index) => (
@@ -114,7 +123,7 @@ export default function Page() {
                                 </span>
                                 }
                                 {livro.author_name && livro.author_name.length == 1 && <span className="font-bold mt-3 border-t-1 border-black">Autor: {livro.author_name}</span>}
-                                <Link href={`/livro?key=${livro.editions.docs[0].key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
+                                <Link href={`/livro?key=${livro.editions.docs.length > 0 ? livro.editions.docs[0].key : livro.key}`} className="mt-3 text-center bg-background3 p-2 rounded hover:bg-background4 transition-colors">Ver mais</Link>
                             </div>
                         )}
                     })}
